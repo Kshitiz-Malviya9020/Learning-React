@@ -4,16 +4,27 @@ import ErrorMsg from "./components/ErrorMsg"
 import TodoList from "./components/TodoList"
 import todoItems from "./components/Data"
 import TodoContainer from "./components/TodoContainer"
+import {useState} from 'react'
 import './App.css'
 function App() {
+  const [todos, setTodos] = useState(todoItems);
+  let handleOnAdd = (task, date) => {
+   let newTodo = {
+      id: todos.length + 1,
+      name: task,
+      date: date,
+    }
+    setTodos((prevTodos) => [...prevTodos, newTodo]);
+  }
+  let handleOnDelete = (id) => {
+    setTodos((prevTodos) => prevTodos.filter((todo) => todo.id !== id));
+  }
   return <>
-    <center className='AppName'>
-      <AppName />
-    </center>
+    <AppName />
     <TodoContainer>
-      <AddTodo  />
-      <ErrorMsg todoList={todoItems} />
-      <TodoList todoList={todoItems} />
+      <AddTodo handleOnAdd={handleOnAdd} />
+      <ErrorMsg todoList={todos} />
+      <TodoList todoList={todos} handleOnDelete={handleOnDelete} />
     </TodoContainer>
   </>
 }

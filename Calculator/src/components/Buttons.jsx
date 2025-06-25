@@ -1,5 +1,4 @@
-import React from 'react'
-
+import Button from "./Button"
 const btnList = [
   { id: 1, value: '7' },
   { id: 2, value: '8' },
@@ -15,23 +14,19 @@ const btnList = [
   { id: 12, value: '-' },
   { id: 13, value: '0' },
   { id: 14, value: '.' },
-  { id: 15, value: '=' },
-  { id: 16, value: '+' }
+  { id: 17, value: 'C' },
+  { id: 16, value: '+' },
+  { id: 15, value: '=' }
 ]
 
-const Buttons = () => (
-  <div className="row g-2">
-    {btnList.map(btn => (
-      <div key={btn.id} className="col-3">
-        <button
-          className={`btn ${btn.value === '=' ? 'btn-success' : ['/', '*', '-', '+'].includes(btn.value) ? 'btn-secondary' : 'btn-light'} w-100 py-3 fs-5 fw-bold`}
-          disabled
-        >
-          {btn.value}
-        </button>
-      </div>
-    ))}
-  </div>
-)
+const Buttons = ({ handleOnClick }) => {
+  return (
+    <div className="row g-2">
+      {btnList.map(btn => (
+        <Button key={btn.id} btnValue={btn.value} handleOnClick={handleOnClick} />
+      ))}
+    </div>
+  );
+}
 
 export default Buttons

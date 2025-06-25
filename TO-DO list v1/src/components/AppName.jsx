@@ -1,7 +1,7 @@
 import React from 'react'
 
 function AppName() {
-  return <h1>TODO App</h1>
+  return <center><h1 className='float:center '>TODO App</h1></center>
 }
 
 export default AppName
