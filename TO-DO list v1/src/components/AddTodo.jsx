@@ -1,10 +1,13 @@
+import { IoAddCircleSharp } from "react-icons/io5";
+import { useContext } from "react";
+import { todoItemsStore } from "../store/todoItemsStore";
 
-function AddTodo({ handleOnAdd }) {
+function AddTodo() {
+  const {addTodo} = useContext(todoItemsStore)
   return <>
     <form onSubmit={(e) => {
       e.preventDefault();
-      console.log(e.target[0].value, e.target[1].value);
-      handleOnAdd(e.target[0].value, e.target[1].value);
+      addTodo(e.target[0].value, e.target[1].value);
       e.target[0].value = '';
       e.target[1].value = '';
     }
@@ -17,7 +20,7 @@ function AddTodo({ handleOnAdd }) {
           <input type="date" required />
         </div>
         <div className="col-2">
-          <button type="submit" className="btn btn-success kg-button">Add</button>
+          <button type="submit" className="btn btn-success kg-button"><IoAddCircleSharp /></button>
         </div>
       </div>
     </form>

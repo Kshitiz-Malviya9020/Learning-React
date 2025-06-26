@@ -1,8 +1,13 @@
 import TodoItem from "./TodoItem";
-const TodoList = ({ todoList, handleOnDelete }) => {
+import { useContext } from "react";
+import { todoItemsStore } from "../store/todoItemsStore";
+
+const TodoList = () => {
+  const { todos, deleteTodo } = useContext(todoItemsStore);
+  // const todoList = contextObj.todos
   return <>
-    {todoList.map(item => (
-      <TodoItem key={item.id} TodoID = {item.id} TodoName={item.name} TodoDate={item.date} handleOnDelete={handleOnDelete} />
+    {todos.map(item => (
+      <TodoItem key={item.id} TodoID = {item.id} TodoName={item.name} TodoDate={item.date} handleOnDelete={deleteTodo} />
     ))}
   </>
 };

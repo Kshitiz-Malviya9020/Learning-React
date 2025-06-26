@@ -1,7 +1,9 @@
-
-function ErrorMsg({todoList}) {
+import { todoItemsStore } from "../store/todoItemsStore"
+import { useContext } from 'react'
+function ErrorMsg() {
+  const { todos } = useContext(todoItemsStore)
   return <>
-  {todoList.length === 0 ? <p>No tasks available</p> : null}
+  {todos.length === 0 ? <p>No tasks available</p> : null}
   </>
 }
 export default ErrorMsg
